@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Locale;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -52,7 +53,17 @@ public class MyGeocoder extends CordovaPlugin {
       final CallbackContext callbackContext) throws JSONException, IOException {
 
     JSONObject opts = args.getJSONObject(0);
-    Geocoder geocoder = new Geocoder(this.cordova.getActivity());
+    Geocoder geocoder;
+    if(opts.has("locale")){
+      Locale locale = new Locale(opts.getString("locale"));
+      if(locale.getISO3Language() != null && locale.getISO3Country() != null) {
+        geocoder = new Geocoder(this.cordova.getActivity(), locale);
+      } else {
+        geocoder = new Geocoder(this.cordova.getActivity());
+      }
+    } else {
+      geocoder = new Geocoder(this.cordova.getActivity());
+    }
     List<Address> geoResults;
     JSONArray results = new JSONArray();
     Iterator<Address> iterator = null;
