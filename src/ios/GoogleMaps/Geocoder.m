@@ -31,6 +31,12 @@
   NSDictionary *json = [command.arguments objectAtIndex:0];
   NSDictionary *position = [json objectForKey:@"position"];
   NSString *address = [json objectForKey:@"address"];
+  NSString *locale = [json objectForKey:@"locale"];
+    
+  if(locale != nil) {
+    [[NSUserDefaults standardUserDefaults] setObject:@[locale] forKey:@"AppleLanguages"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
 
   if (!self.geocoder) {
     self.geocoder = [[CLGeocoder alloc] init];
