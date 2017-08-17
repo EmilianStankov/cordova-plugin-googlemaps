@@ -1281,10 +1281,10 @@ public class GoogleMaps extends CordovaPlugin implements View.OnClickListener, O
     });
   }
 
-  private void showLicenseText() {
-    AsyncLicenseInfo showLicense = new AsyncLicenseInfo(activity);
-    showLicense.execute();
-  }
+  // private void showLicenseText() {
+  //   AsyncLicenseInfo showLicense = new AsyncLicenseInfo(activity);
+  //   showLicense.execute();
+  // }
 
   /********************************************************
    * Callbacks
@@ -1837,7 +1837,7 @@ public class GoogleMaps extends CordovaPlugin implements View.OnClickListener, O
       return;
     }
     if (viewId == LICENSE_LINK_ID) {
-      showLicenseText();
+      //showLicenseText();
       return;
     }
   }
